@@ -1,0 +1,25 @@
+.ds-session-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-3);
+}
+.ds-session-header__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.ds-session-header__top .ds-icon-button { margin-left: calc(-1 * var(--ds-space-2)); }
+.ds-session-header__spacer { width: 36px; }
+.ds-session-header__title {
+  margin: 0;
+  color: var(--ds-color-text-primary);
+  font-family: var(--ds-font-family-title);
+  font-size: var(--ds-font-size-2xl);
+  font-weight: var(--ds-font-weight-extrabold);
+  line-height: var(--ds-line-height-tight);
+}
+.ds-session-header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-space-3);
+}

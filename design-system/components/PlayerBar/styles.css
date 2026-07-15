@@ -1,0 +1,14 @@
+.ds-player-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--ds-space-2) var(--ds-space-4);
+  background-color: var(--ds-color-background-press);
+}
+.ds-player-bar__controls {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-space-6);
+}
+.ds-player-bar__aux { color: var(--ds-color-brand); }
+.ds-player-bar__aux:hover { color: var(--ds-color-brand); opacity: 0.8; }

@@ -1,0 +1,24 @@
+.ds-queue-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Durante o arrasto: sem selecao de texto e vizinhos animando a troca de lugar. */
+.ds-queue-list--dragging {
+  user-select: none;
+  -webkit-user-select: none;
+}
+.ds-queue-list--dragging .ds-queue-item {
+  transition: transform var(--ds-duration-fast) ease;
+}
+
+/* Item arrastado: acima dos vizinhos, com fundo e sombra de carta. */
+.ds-queue-item--dragging {
+  position: relative;
+  z-index: 1;
+  transition: none !important;
+  background-color: var(--ds-color-background-elevated);
+  box-shadow: var(--ds-shadow-card);
+  border-radius: var(--ds-radius-md);
+}

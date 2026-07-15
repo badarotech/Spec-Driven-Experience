@@ -1,0 +1,108 @@
+/* ============================================================
+   Tokens do Design System (SDX)
+   Origem: spotify-react-web-client (styles/variables.scss, App.scss)
+   Consumo: importe este arquivo uma vez na raiz da aplicacao.
+   ============================================================ */
+
+/* Tipografia: mesmas fontes servidas pelo Encore (Spotify) */
+@font-face {
+  font-family: 'SpotifyMixUITitle';
+  font-weight: 400;
+  src: url(https://encore.scdn.co/fonts/SpotifyMixUITitleVariable-8769ccfde3379b7ebcadd9529b49d0cc.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'SpotifyMixUITitle';
+  font-weight: 700;
+  src: url(https://encore.scdn.co/fonts/SpotifyMixUITitle-Bold-37290f1de77f297fcc26d71e9afcf43f.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'SpotifyMixUITitle';
+  font-weight: 800;
+  src: url(https://encore.scdn.co/fonts/SpotifyMixUITitle-Extrabold-ba6c73cd7f82c81e49cf2204017803ed.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'SpotifyMixUI';
+  font-weight: 400;
+  src: url(https://encore.scdn.co/fonts/SpotifyMixUI-Regular-cc3b1de388efa4cbca6c75cebc24585e.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'SpotifyMixUI';
+  font-weight: 700;
+  src: url(https://encore.scdn.co/fonts/SpotifyMixUI-Bold-4264b799009b1db5c491778b1bc8e5b7.woff2) format('woff2');
+}
+
+:root {
+  /* ---------- Cor: fundos ---------- */
+  --ds-color-background-base: #121212;
+  --ds-color-background-elevated: #1f1f1f;
+  --ds-color-background-highlight: #2a2a2a;
+  --ds-color-background-press: #000000;
+
+  /* ---------- Cor: texto ---------- */
+  --ds-color-text-primary: #ffffff;
+  --ds-color-text-subdued: #b3b3b3;
+  --ds-color-text-on-bright: #000000;
+  --ds-color-text-brand: #1ed760;
+
+  /* ---------- Cor: essenciais ---------- */
+  --ds-color-brand: #1ed760;            /* verde Spotify (hover/realce) */
+  --ds-color-brand-press: #1db954;      /* verde Spotify (press/base) */
+  --ds-color-negative: #f56e7b;         /* contagem de votos em destaque (5,06:1 sobre --ds-color-background-highlight, AA) */
+  --ds-color-white: #ffffff;
+  --ds-color-black: #000000;
+
+  /* ---------- Cor: bordas e divisores ---------- */
+  --ds-color-border-subtle: rgba(255, 255, 255, 0.2);
+  --ds-color-border-strong: rgba(255, 255, 255, 0.4);
+  --ds-color-divider: rgba(255, 255, 255, 0.1);
+
+  /* ---------- Tipografia ---------- */
+  --ds-font-family-title: 'SpotifyMixUITitle', 'CircularSp', sans-serif;
+  --ds-font-family-body: 'SpotifyMixUI', 'CircularSp', sans-serif;
+  --ds-font-size-2xs: 11px;   /* selos, legendas curtas */
+  --ds-font-size-xs: 12px;    /* legendas, "adicionado por" */
+  --ds-font-size-sm: 13px;    /* texto secundario */
+  --ds-font-size-md: 14px;    /* corpo padrao, titulos de faixa */
+  --ds-font-size-lg: 16px;    /* titulos de secao */
+  --ds-font-size-xl: 24px;    /* subtitulos de pagina */
+  --ds-font-size-2xl: 32px;   /* titulo da sessao */
+  --ds-font-weight-regular: 400;
+  --ds-font-weight-bold: 700;
+  --ds-font-weight-extrabold: 800;
+  --ds-line-height-tight: 1.2;
+  --ds-line-height-base: 1.5;
+
+  /* ---------- Espacamento (escala de 4) ---------- */
+  --ds-space-1: 4px;
+  --ds-space-2: 8px;
+  --ds-space-3: 12px;
+  --ds-space-4: 16px;
+  --ds-space-5: 20px;
+  --ds-space-6: 24px;
+  --ds-space-8: 32px;
+
+  /* ---------- Raio ---------- */
+  --ds-radius-sm: 4px;      /* capas pequenas, selo explicito */
+  --ds-radius-md: 8px;      /* cartoes */
+  --ds-radius-lg: 10px;     /* containers (variables.scss) */
+  --ds-radius-pill: 500px;  /* botoes pilula */
+  --ds-radius-circle: 50%;  /* avatares, botao play */
+
+  /* ---------- Elevacao ---------- */
+  --ds-shadow-fab: 0 8px 16px rgba(0, 0, 0, 0.5);
+  --ds-shadow-card: 0 4px 12px rgba(0, 0, 0, 0.4);
+
+  /* ---------- Tamanhos de componentes ---------- */
+  --ds-size-avatar-xs: 16px;
+  --ds-size-avatar-sm: 24px;
+  --ds-size-avatar-md: 32px;
+  --ds-size-avatar-lg: 48px;
+  --ds-size-cover-sm: 40px;
+  --ds-size-cover-md: 48px;
+  --ds-size-play-button: 56px;
+
+  /* ---------- Movimento ---------- */
+  --ds-duration-fast: 0.1s;
+  --ds-duration-base: 0.3s;
+  --ds-easing-base: ease;
+}

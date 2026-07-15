@@ -1,0 +1,46 @@
+.ds-live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-space-1);
+  padding: 2px var(--ds-space-2);
+  border-radius: var(--ds-radius-pill);
+  background-color: var(--ds-color-background-highlight);
+  color: var(--ds-color-brand);
+  font-family: var(--ds-font-family-body);
+  font-size: var(--ds-font-size-2xs);
+  font-weight: var(--ds-font-weight-bold);
+  line-height: var(--ds-line-height-base);
+  white-space: nowrap;
+}
+.ds-live-badge__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--ds-radius-circle);
+  background-color: var(--ds-color-brand);
+}
+
+.ds-explicit-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  border-radius: 2px;
+  background-color: var(--ds-color-text-subdued);
+  color: var(--ds-color-background-base);
+  font-family: var(--ds-font-family-body);
+  font-size: 9px;
+  font-weight: var(--ds-font-weight-bold);
+  line-height: 1;
+}
+
+.ds-session-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-space-1);
+  color: var(--ds-color-brand);
+  font-family: var(--ds-font-family-body);
+  font-size: var(--ds-font-size-sm);
+  font-weight: var(--ds-font-weight-bold);
+}

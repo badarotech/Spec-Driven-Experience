@@ -1,0 +1,52 @@
+.ds-track-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-space-3);
+  min-width: 0;
+}
+.ds-track-meta__cover {
+  width: var(--ds-size-cover-sm);
+  height: var(--ds-size-cover-sm);
+  flex-shrink: 0;
+  border-radius: var(--ds-radius-sm);
+  object-fit: cover;
+}
+.ds-track-meta__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.ds-track-meta__title {
+  margin: 0;
+  color: var(--ds-color-text-primary);
+  font-family: var(--ds-font-family-body);
+  font-size: var(--ds-font-size-md);
+  font-weight: var(--ds-font-weight-bold);
+  line-height: var(--ds-line-height-tight);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ds-track-meta__title--highlighted { color: var(--ds-color-text-brand); }
+.ds-track-meta__artists {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-space-1);
+  margin: 0;
+  color: var(--ds-color-text-subdued);
+  font-family: var(--ds-font-family-body);
+  font-size: var(--ds-font-size-sm);
+  line-height: var(--ds-line-height-tight);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ds-track-meta__added-by {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-space-1);
+  color: var(--ds-color-text-subdued);
+  font-family: var(--ds-font-family-body);
+  font-size: var(--ds-font-size-xs);
+}

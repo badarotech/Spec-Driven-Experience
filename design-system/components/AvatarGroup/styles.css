@@ -1,0 +1,17 @@
+.ds-avatar-group {
+  display: inline-flex;
+  align-items: center;
+}
+.ds-avatar-group .ds-avatar {
+  border: 2px solid var(--ds-color-background-base);
+  box-sizing: content-box;
+}
+.ds-avatar-group .ds-avatar + .ds-avatar { margin-left: -8px; }
+.ds-avatar-group--xs .ds-avatar + .ds-avatar,
+.ds-avatar-group--sm .ds-avatar + .ds-avatar { margin-left: -6px; }
+.ds-avatar-group__overflow {
+  background-color: var(--ds-color-background-highlight);
+  color: var(--ds-color-text-primary);
+  font-size: var(--ds-font-size-xs);
+  font-weight: var(--ds-font-weight-bold);
+}

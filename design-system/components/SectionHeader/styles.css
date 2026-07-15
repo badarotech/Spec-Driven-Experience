@@ -1,0 +1,22 @@
+.ds-section-header { margin: 0; }
+.ds-section-header__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ds-space-2);
+}
+.ds-section-header__title {
+  margin: 0;
+  color: var(--ds-color-text-primary);
+  font-family: var(--ds-font-family-title);
+  font-size: var(--ds-font-size-lg);
+  font-weight: var(--ds-font-weight-bold);
+  line-height: var(--ds-line-height-tight);
+}
+.ds-section-header__caption {
+  margin: var(--ds-space-1) 0 0;
+  color: var(--ds-color-text-subdued);
+  font-family: var(--ds-font-family-body);
+  font-size: var(--ds-font-size-xs);
+  line-height: var(--ds-line-height-base);
+}

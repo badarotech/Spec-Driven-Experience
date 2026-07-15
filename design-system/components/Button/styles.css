@@ -1,0 +1,81 @@
+.ds-pill-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--ds-radius-pill);
+  font-family: var(--ds-font-family-body);
+  font-weight: var(--ds-font-weight-bold);
+  cursor: pointer;
+  background: none;
+  border: 1px solid transparent;
+  transition: transform var(--ds-duration-fast) var(--ds-easing-base),
+    border-color var(--ds-duration-fast) var(--ds-easing-base);
+}
+.ds-pill-button--sm { height: 32px; padding: 0 var(--ds-space-4); font-size: var(--ds-font-size-sm); }
+.ds-pill-button--md { height: 40px; padding: 0 var(--ds-space-6); font-size: var(--ds-font-size-md); }
+.ds-pill-button--outline {
+  border-color: var(--ds-color-border-subtle);
+  color: var(--ds-color-text-primary);
+}
+.ds-pill-button--outline:hover {
+  border-color: var(--ds-color-text-primary);
+  transform: scale(1.04);
+}
+.ds-pill-button--solid {
+  background-color: var(--ds-color-white);
+  color: var(--ds-color-text-on-bright);
+}
+.ds-pill-button--brand {
+  background-color: var(--ds-color-brand);
+  color: var(--ds-color-text-on-bright);
+}
+.ds-pill-button--solid:hover,
+.ds-pill-button--brand:hover { transform: scale(1.04); }
+.ds-pill-button--brand:active { background-color: var(--ds-color-brand-press); }
+
+.ds-icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--ds-space-2);
+  background: none;
+  border: none;
+  border-radius: var(--ds-radius-circle);
+  color: var(--ds-color-text-subdued);
+  cursor: pointer;
+  transition: color var(--ds-duration-fast) var(--ds-easing-base);
+}
+.ds-icon-button:hover { color: var(--ds-color-text-primary); }
+
+.ds-play-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: var(--ds-radius-circle);
+  background-color: var(--ds-color-white);
+  color: var(--ds-color-black);
+  cursor: pointer;
+  transition: transform var(--ds-duration-fast) var(--ds-easing-base);
+}
+.ds-play-button:hover { transform: scale(1.06); }
+
+.ds-fab-button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-space-2);
+  height: 48px;
+  padding: 0 var(--ds-space-5);
+  border: none;
+  border-radius: var(--ds-radius-pill);
+  background-color: var(--ds-color-brand);
+  color: var(--ds-color-text-on-bright);
+  font-family: var(--ds-font-family-body);
+  font-size: var(--ds-font-size-md);
+  font-weight: var(--ds-font-weight-bold);
+  box-shadow: var(--ds-shadow-fab);
+  cursor: pointer;
+  transition: transform var(--ds-duration-fast) var(--ds-easing-base);
+}
+.ds-fab-button:hover { transform: scale(1.04); }
+.ds-fab-button:active { background-color: var(--ds-color-brand-press); }

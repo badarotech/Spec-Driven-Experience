@@ -1,0 +1,12 @@
+.ds-drag-handle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: var(--ds-space-2);
+  color: var(--ds-color-text-subdued);
+  cursor: grab;
+  touch-action: none;
+}
+.ds-drag-handle:hover { color: var(--ds-color-text-primary); }
+.ds-drag-handle:active { cursor: grabbing; }

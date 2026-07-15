@@ -1,0 +1,17 @@
+.ds-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: var(--ds-radius-circle);
+  object-fit: cover;
+  background-color: var(--ds-color-background-highlight);
+  color: var(--ds-color-text-primary);
+  font-family: var(--ds-font-family-body);
+  font-weight: var(--ds-font-weight-bold);
+  user-select: none;
+}
+.ds-avatar--xs { width: var(--ds-size-avatar-xs); height: var(--ds-size-avatar-xs); font-size: 9px; }
+.ds-avatar--sm { width: var(--ds-size-avatar-sm); height: var(--ds-size-avatar-sm); font-size: var(--ds-font-size-2xs); }
+.ds-avatar--md { width: var(--ds-size-avatar-md); height: var(--ds-size-avatar-md); font-size: var(--ds-font-size-sm); }
+.ds-avatar--lg { width: var(--ds-size-avatar-lg); height: var(--ds-size-avatar-lg); font-size: var(--ds-font-size-lg); }

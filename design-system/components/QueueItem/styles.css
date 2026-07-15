@@ -1,0 +1,17 @@
+.ds-queue-item {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-space-3);
+  padding: var(--ds-space-2) 0;
+  list-style: none;
+}
+.ds-queue-item__position {
+  width: 16px;
+  flex-shrink: 0;
+  color: var(--ds-color-text-subdued);
+  font-family: var(--ds-font-family-body);
+  font-size: var(--ds-font-size-md);
+  text-align: center;
+}
+.ds-queue-item__track { flex: 1; min-width: 0; }
+.ds-queue-item__trailing { flex-shrink: 0; }
