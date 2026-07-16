@@ -12,6 +12,10 @@
   background-color: var(--ds-color-background-base);
   color: var(--ds-color-text-primary);
   font-family: var(--ds-font-family-body, sans-serif);
+  /* Confina a View Transitions API a este card: sem isso, a camada de
+     transicao do navegador cobre a viewport inteira (acima do FAB, do
+     rodape, de tudo), em vez de ficar restrita a largura do card. */
+  contain: layout;
 }
 
 /* Cabeçalho da sessão: respiro lateral e superior, como na tela original. */
@@ -23,6 +27,11 @@
   flex: 1;
   overflow-y: auto;
   padding: 0 var(--ds-space-4) 150px;
+  /* Confina a View Transitions API a esta area: sem isso, os itens da fila
+     em transicao aparecem por cima do FAB e do rodape, que sao fixed. */
+  contain: layout;
+  position: relative;
+  z-index: 0;
 }
 
 /* Ritmo vertical: título de seção afastado do bloco anterior. */
@@ -43,6 +52,14 @@
 
 .jam-votacao__fila .ds-queue-item {
   padding: var(--ds-space-3) 0;
+}
+
+/* Reordenacao suave da fila em votacao (View Transitions API), aplicada aos itens
+   com view-transition-name (ver QueueList). Sem suporte no navegador (Firefox,
+   Safari), a troca acontece sem animacao, sem quebrar a experiencia. */
+::view-transition-group(*) {
+  animation-duration: 250ms;
+  animation-timing-function: ease;
 }
 
 /* Estado Carregando: alternativa mínima enquanto não existe skeleton/spinner no design system. */

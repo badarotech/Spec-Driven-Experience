@@ -1,4 +1,5 @@
 import { FC, useCallback, useEffect, useRef, useState } from 'react';
+import { flushSync } from 'react-dom';
 import '../../../design-system/tokens/tokens.css';
 import {
   FabButton,
@@ -90,18 +91,42 @@ const CARREGAMENTO_SIMULADO_MS = 600;
 const ordenarPorVotos = (itens: QueueTrack[]): QueueTrack[] =>
   [...itens].sort((a, b) => (b.votes ?? 0) - (a.votes ?? 0));
 
-/** Aplica o toque de voto a um item: registra, troca ou desfaz, conforme o voto atual da pessoa. */
+type DocumentComViewTransition = Document & {
+  startViewTransition: (cb: () => void) => { finished: Promise<void> };
+};
+
+// Referencia a transicao em andamento: iniciar outra por cima faz o navegador
+// pular a atual direto para o fim (comportamento nativo da API), o que e
+// visualmente mais estranho do que so aplicar a proxima atualizacao sem animar.
+let transicaoEmAndamento: Promise<void> | null = null;
+
+/**
+ * Aplica uma atualizacao de DOM dentro de uma View Transition, quando o navegador
+ * suporta a API (Chromium). Sem suporte (Firefox, Safari), ou com uma transicao
+ * ja em andamento (cliques em sequencia rapida), aplica direto, sem animacao.
+ * Usa flushSync para garantir que o React já tenha commitado o DOM antes do
+ * navegador capturar o snapshot "depois": sem isso a API nao anima nada.
+ */
+const comTransicaoDeVisualizacao = (atualizar: () => void) => {
+  const suportado = typeof document !== 'undefined' && 'startViewTransition' in document;
+  if (!suportado || transicaoEmAndamento) {
+    atualizar();
+    return;
+  }
+
+  const transicao = (document as DocumentComViewTransition).startViewTransition(() =>
+    flushSync(atualizar),
+  );
+  transicaoEmAndamento = transicao.finished.finally(() => {
+    transicaoEmAndamento = null;
+  });
+};
+
+/** Aplica o toque de voto a um item: cada clique soma ou subtrai 1, sem limite por pessoa. */
 const aplicarVoto = (item: QueueTrack, sentido: 'up' | 'down'): Pick<QueueTrack, 'votes' | 'userVote'> => {
   const votesAtual = item.votes ?? 0;
   const delta = sentido === 'up' ? 1 : -1;
-
-  if (item.userVote === sentido) {
-    return { votes: votesAtual - delta, userVote: null };
-  }
-  if (item.userVote == null) {
-    return { votes: votesAtual + delta, userVote: sentido };
-  }
-  return { votes: votesAtual + delta * 2, userVote: sentido };
+  return { votes: votesAtual + delta, userVote: sentido };
 };
 
 export const JamGrupoVotacao: FC = () => {
@@ -159,23 +184,28 @@ export const JamGrupoVotacao: FC = () => {
    */
   const votar = useCallback(
     (id: string, sentido: 'up' | 'down') => {
-      const estadoAnterior = fila;
-      const atualizada = ordenarPorVotos(
-        fila.map((item) => (item.id === id ? { ...item, ...aplicarVoto(item, sentido) } : item)),
-      );
+      let estadoAnterior: QueueTrack[] = [];
 
-      setFila(atualizada);
-      anunciarSeMudou(atualizada.map((item) => item.id));
+      comTransicaoDeVisualizacao(() => {
+        setFila((atual) => {
+          estadoAnterior = atual;
+          const atualizada = ordenarPorVotos(
+            atual.map((item) => (item.id === id ? { ...item, ...aplicarVoto(item, sentido) } : item)),
+          );
+          anunciarSeMudou(atualizada.map((item) => item.id));
+          return atualizada;
+        });
+      });
 
       window.setTimeout(() => {
         if (Math.random() < CHANCE_DE_FALHA_SIMULADA) {
-          setFila(estadoAnterior);
+          comTransicaoDeVisualizacao(() => setFila(estadoAnterior));
           ordemAnteriorRef.current = estadoAnterior.map((item) => item.id);
           mostrarErroTemporario();
         }
       }, CONFIRMACAO_SIMULADA_MS);
     },
-    [fila, anunciarSeMudou, mostrarErroTemporario],
+    [anunciarSeMudou, mostrarErroTemporario],
   );
 
   return (

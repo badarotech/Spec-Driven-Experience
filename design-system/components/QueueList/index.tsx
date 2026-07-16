@@ -114,6 +114,7 @@ export const QueueList: FC<QueueListProps> = memo(
               key={id}
               position={index + 1}
               track={track}
+              style={{ viewTransitionName: 'ds-queue-item-' + id }}
               trailing={
                 mode === 'votacao' ? (
                   <VoteControl
