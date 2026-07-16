@@ -122,11 +122,18 @@ const comTransicaoDeVisualizacao = (atualizar: () => void) => {
   });
 };
 
-/** Aplica o toque de voto a um item: cada clique soma ou subtrai 1, sem limite por pessoa. */
+/** Aplica o toque de voto a um item: registra, troca ou desfaz, conforme o voto atual da pessoa. */
 const aplicarVoto = (item: QueueTrack, sentido: 'up' | 'down'): Pick<QueueTrack, 'votes' | 'userVote'> => {
   const votesAtual = item.votes ?? 0;
   const delta = sentido === 'up' ? 1 : -1;
-  return { votes: votesAtual + delta, userVote: sentido };
+
+  if (item.userVote === sentido) {
+    return { votes: votesAtual - delta, userVote: null };
+  }
+  if (item.userVote == null) {
+    return { votes: votesAtual + delta, userVote: sentido };
+  }
+  return { votes: votesAtual + delta * 2, userVote: sentido };
 };
 
 export const JamGrupoVotacao: FC = () => {
