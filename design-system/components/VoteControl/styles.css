@@ -29,4 +29,4 @@
   font-weight: var(--ds-font-weight-bold);
   line-height: var(--ds-line-height-tight);
 }
-.ds-vote-control__count--highlighted { color: var(--ds-color-negative); }
+.ds-vote-control__count--highlighted { color: var(--ds-color-brand); }

@@ -47,7 +47,7 @@
   /* ---------- Cor: essenciais ---------- */
   --ds-color-brand: #1ed760;            /* verde Spotify (hover/realce) */
   --ds-color-brand-press: #1db954;      /* verde Spotify (press/base) */
-  --ds-color-negative: #f56e7b;         /* contagem de votos em destaque (5,06:1 sobre --ds-color-background-highlight, AA) */
+  --ds-color-negative: #f56e7b;         /* estados de erro/negativo (5,06:1 sobre --ds-color-background-highlight, AA) */
   --ds-color-white: #ffffff;
   --ds-color-black: #000000;
 

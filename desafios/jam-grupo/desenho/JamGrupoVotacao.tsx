@@ -38,7 +38,7 @@ const filaInicial: QueueTrack[] = [
     title: 'We Don’t Talk Anymore (feat. Selena Gomez)',
     artists: 'Charlie Puth, Selena Gomez, DROELOE',
     addedBy: { name: 'Aline', avatarUrl: fotos.aline },
-    votes: 5,
+    votes: 4,
     userVote: null,
   },
   {

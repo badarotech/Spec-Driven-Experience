@@ -49,7 +49,7 @@ Todos os tokens usam o prefixo `--ds-` no CSS e estao espelhados no objeto `toke
 | `SessionHeader` | Cabecalho completo da sessao | Composicao de IconButton, SessionBadge, AvatarGroup e PillButton | Topo das duas telas da Jam |
 | `TrackMeta` | Capa + titulo + artistas + procedencia | `explicit`, `highlighted` (titulo verde), `addedBy` (com `isYou`) | Base de qualquer linha de faixa |
 | `NowPlayingItem` | Linha da faixa em reproducao | `listener` opcional a direita | Secao "Tocando agora" |
-| `VoteControl` | Pilula vertical de seta, contagem, seta | `userVote` up/down/null, `highlighted` (contagem em `--ds-color-negative`) | Fila em votacao |
+| `VoteControl` | Pilula vertical de seta, contagem, seta | `userVote` up/down/null, `highlighted` (contagem em `--ds-color-brand`) | Fila em votacao |
 | `DragHandle` | Alca de arrastar acessivel | Estados grab/grabbing | Fila por ordem de chegada |
 | `QueueItem` | Linha de fila: posicao + faixa + controle | `trailing` livre (VoteControl, DragHandle) | Dentro de `QueueList` |
 | `QueueList` | Lista ordenada da fila | Modos `votacao` e `chegada`; `highlightFirst`; callbacks `onUpvote`, `onDownvote`, `onReorder` | Corpo das duas telas |
