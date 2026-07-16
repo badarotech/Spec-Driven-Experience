@@ -2,7 +2,7 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "rewrites": [
-    { "source": "/dev", "destination": "/dev/index.html" },
-    { "source": "/dev/(.*)", "destination": "/dev/$1" }
+    { "source": "/desenho", "destination": "/desenho/index.html" },
+    { "source": "/desenho/(.*)", "destination": "/desenho/$1" }
   ]
 }

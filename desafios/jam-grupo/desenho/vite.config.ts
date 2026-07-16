@@ -2,7 +2,7 @@ import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  base: '/dev/',
+  base: '/desenho/',
   plugins: [react()],
   server: {
     fs: {
@@ -11,8 +11,8 @@ export default defineConfig({
     },
   },
   build: {
-    // Saída combinada na raiz do repo: desenho fica em /dev no deploy da Vercel.
-    outDir: '../../../dist/dev',
+    // Saída combinada na raiz do repo: desenho fica em /desenho no deploy da Vercel.
+    outDir: '../../../dist/desenho',
     emptyOutDir: true,
   },
 });

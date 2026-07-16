@@ -80,11 +80,22 @@
   border: 0;
 }
 
-.jam-votacao__fab {
+.jam-votacao__fab-faixa {
   position: fixed;
-  right: var(--ds-space-4);
+  left: 0;
+  right: 0;
   bottom: 96px;
+  max-width: 420px;
+  margin: 0 auto;
   z-index: 2;
+  pointer-events: none;
+}
+
+.jam-votacao__fab {
+  position: absolute;
+  right: var(--ds-space-4);
+  bottom: 0;
+  pointer-events: auto;
 }
 
 .jam-votacao__rodape {

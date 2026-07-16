@@ -238,9 +238,11 @@ export const JamGrupoVotacao: FC = () => {
         </p>
       </main>
 
-      <FabButton className='jam-votacao__fab' onClick={() => {}}>
-        Adicionar
-      </FabButton>
+      <div className='jam-votacao__fab-faixa'>
+        <FabButton className='jam-votacao__fab' onClick={() => {}}>
+          Adicionar
+        </FabButton>
+      </div>
 
       <footer className='jam-votacao__rodape'>
         <PlayerBar
