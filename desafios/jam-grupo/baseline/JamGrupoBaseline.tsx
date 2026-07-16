@@ -116,9 +116,11 @@ export const JamGrupoBaseline: FC = () => {
         />
       </main>
 
-      <FabButton className='jam-baseline__fab' onClick={() => {}}>
-        Adicionar
-      </FabButton>
+      <div className='jam-baseline__fab-faixa'>
+        <FabButton className='jam-baseline__fab' onClick={() => {}}>
+          Adicionar
+        </FabButton>
+      </div>
 
       <footer className='jam-baseline__rodape'>
         <PlayerBar
