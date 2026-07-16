@@ -9,4 +9,9 @@ export default defineConfig({
       allow: ['../../..'],
     },
   },
+  build: {
+    // Saída combinada na raiz do repo: baseline é a home do deploy na Vercel.
+    outDir: '../../../dist',
+    emptyOutDir: true,
+  },
 });

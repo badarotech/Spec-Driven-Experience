@@ -1,0 +1,9 @@
+{
+  "name": "spec-driven-experience",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "build": "npm install --prefix desafios/jam-grupo/baseline && npm install --prefix desafios/jam-grupo/desenho && npm run build --prefix desafios/jam-grupo/baseline && npm run build --prefix desafios/jam-grupo/desenho"
+  }
+}
