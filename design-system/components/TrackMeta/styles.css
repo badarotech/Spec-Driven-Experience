@@ -4,7 +4,13 @@
   gap: var(--ds-space-3);
   min-width: 0;
 }
+
+.jam-v2-drawer .ds-track-meta__cover {
+  transform: translateY(10px);
+}
+
 .ds-track-meta__cover {
+
   width: var(--ds-size-cover-sm);
   height: var(--ds-size-cover-sm);
   flex-shrink: 0;
