@@ -1,0 +1,287 @@
+/* Layout de página da tela "Fila em votação" (SPEC-01).
+   O design system não define padding de página nem ritmo vertical entre
+   seções; isso é responsabilidade da composição, feita aqui. */
+
+.jam-votacao {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  background-color: var(--ds-color-background-base);
+  color: var(--ds-color-text-primary);
+  font-family: var(--ds-font-family-body, sans-serif);
+  /* Confina a View Transitions API a este card: sem isso, a camada de
+     transicao do navegador cobre a viewport inteira (acima do FAB, do
+     rodape, de tudo), em vez de ficar restrita a largura do card. */
+  contain: layout;
+}
+
+/* Cabeçalho da sessão: respiro lateral e superior, como na tela original. */
+.jam-votacao__cabecalho {
+  padding: var(--ds-space-3) var(--ds-space-4) 0;
+}
+
+.jam-votacao__conteudo {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 0 var(--ds-space-4) 150px;
+  /* Confina a View Transitions API a esta area: sem isso, os itens da fila
+     em transicao aparecem por cima do rodape, que e fixed. */
+  contain: layout;
+  position: relative;
+  z-index: 0;
+  /* Scroll fino, so quando necessario: o card e estreito (420px), uma barra
+     larga (padrao do SO) rouba espaco visual do conteudo. */
+  scrollbar-width: thin;
+  scrollbar-color: var(--ds-color-border-strong) transparent;
+}
+
+.jam-votacao__conteudo::-webkit-scrollbar {
+  width: 6px;
+}
+.jam-votacao__conteudo::-webkit-scrollbar-track {
+  background: transparent;
+}
+.jam-votacao__conteudo::-webkit-scrollbar-thumb {
+  background-color: var(--ds-color-border-strong);
+  border-radius: var(--ds-radius-pill);
+}
+
+/* Título de seção simples (sem selo "ao vivo" nesta versão). */
+.jam-votacao__secao-titulo {
+  margin: var(--ds-space-6) 0 var(--ds-space-3);
+  color: var(--ds-color-text-primary);
+  font-size: var(--ds-font-size-lg);
+  font-weight: var(--ds-font-weight-bold);
+}
+.jam-votacao__secao-titulo--fila {
+  margin-top: var(--ds-space-8);
+}
+
+.jam-votacao__tocando {
+  margin-bottom: var(--ds-space-2);
+}
+
+/* Reordenacao suave da fila em votacao dentro do drawer (View Transitions API),
+   aplicada aos itens com view-transition-name. Sem suporte no navegador
+   (Firefox, Safari), a troca acontece sem animacao, sem quebrar a experiencia. */
+::view-transition-group(*) {
+  animation-duration: 220ms;
+  animation-timing-function: ease;
+}
+
+.jam-votacao__rodape {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-width: 420px;
+  margin: 0 auto;
+  z-index: 1;
+}
+
+.jam-votacao__rodape .ds-player-bar {
+  padding-top: var(--ds-space-3);
+  padding-bottom: var(--ds-space-4);
+}
+
+/* ============================================================
+   Protótipo v2: ações da tela principal, lista limpa e drawer.
+   Composição feita na tela; nenhum destes seletores é um componente
+   novo de design system (ver README.md desta pasta).
+   ============================================================ */
+
+.jam-v2-acoes {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-space-3);
+  padding-top: var(--ds-space-6);
+}
+
+.jam-v2-acoes__adicionar,
+.jam-v2-acoes__votar {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ds-space-2);
+  white-space: nowrap;
+}
+
+.jam-v2-acoes__adicionar {
+  cursor: not-allowed;
+  .jam-v2-acoes__wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+}
+
+/* Botão secundário cinza escuro (estilo Spotify), sobrepondo o outline padrão do PillButton. */
+.jam-v2-acoes__votar {
+  border-color: transparent;
+  background-color: var(--ds-color-background-highlight);
+  color: var(--ds-color-text-primary);
+  cursor: pointer;
+}
+.jam-v2-acoes__votar:hover {
+  background-color: var(--ds-color-background-elevated);
+}
+
+/* Lista de visualização: só capa, título, artistas e quem adicionou, sem numeração nem votos. */
+.jam-v2-fila-limpa {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.jam-v2-fila-limpa__item {
+  padding: var(--ds-space-3) 0;
+  border-bottom: 1px solid var(--ds-color-divider);
+}
+.jam-v2-fila-limpa__item:last-child {
+  border-bottom: none;
+}
+
+/* Sobreposição atrás do drawer: fecha ao tocar fora. */
+.jam-v2-drawer-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Bottom-drawer: fechado por padrão (transform fora da viewport), abre parando
+   a 78px do topo da janela. Anima suavemente no eixo Y. */
+.jam-v2-drawer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 65px;
+  z-index: 4;
+  max-width: 420px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--ds-color-background-elevated);
+  border-radius: var(--ds-radius-lg) var(--ds-radius-lg) 0 0;
+  box-shadow: var(--ds-shadow-card);
+  transform: translateY(100%);
+  transition: transform var(--ds-duration-base) var(--ds-easing-base);
+  padding: var(--ds-space-3) var(--ds-space-4) var(--ds-space-4);
+  overflow: hidden;
+}
+
+.jam-v2-drawer--aberto {
+  transform: translateY(0);
+}
+
+.jam-v2-drawer__handle {
+  width: 36px;
+  height: 4px;
+  margin: 0 auto var(--ds-space-3);
+  border-radius: var(--ds-radius-pill);
+  background-color: var(--ds-color-border-strong);
+  flex-shrink: 0;
+}
+
+.jam-v2-drawer__titulo {
+  margin: 0 0 var(--ds-space-2);
+  text-align: center;
+  font-size: var(--ds-font-size-xl);
+  font-weight: var(--ds-font-weight-bold);
+}
+
+.jam-v2-drawer__subtitulo {
+  margin: 0 0 var(--ds-space-8);
+  text-align: center;
+  color: var(--ds-color-text-subdued);
+  font-size: var(--ds-font-size-sm);
+}
+
+.jam-v2-drawer__fila {
+  margin: 0;
+  padding: var(--ds-space-4) var(--ds-space-1) 0;
+  list-style: none;
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+}
+
+.jam-v2-drawer__item {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-space-3);
+  padding: var(--ds-space-3) 0;
+  border-bottom: 1px solid var(--ds-color-divider);
+}
+.jam-v2-drawer__item:last-child {
+  border-bottom: none;
+}
+
+.jam-v2-drawer__track-wrapper {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.jam-v2-drawer__track {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Substitui "quem adicionou" (avatar + nome) pelo total de votos, alinhado sob o texto,
+   fora da capa (mesmo recuo do bloco de texto do TrackMeta: capa 40px + gap 12px). */
+.jam-v2-drawer__votos-contagem {
+  margin-left: calc(var(--ds-size-cover-sm) + var(--ds-space-3));
+  color: var(--ds-color-text-subdued);
+  font-family: var(--ds-font-family-body);
+  font-size: var(--ds-font-size-xs);
+}
+
+.jam-v2-drawer__votos {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--ds-space-2);
+  flex-shrink: 0;
+}
+
+/* Botão circular de voto (prototipo). Neutro: cinza. Ativo up: verde. Ativo down: vermelho. */
+.jam-v2-voto-circular {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: var(--ds-radius-circle);
+  background-color: var(--ds-color-background-highlight);
+  color: var(--ds-color-text-subdued);
+  cursor: pointer;
+  transition: background-color var(--ds-duration-fast) var(--ds-easing-base),
+    color var(--ds-duration-fast) var(--ds-easing-base);
+}
+.jam-v2-voto-circular:hover {
+  background-color: var(--ds-color-border-strong);
+}
+.jam-v2-voto-circular--up-ativo {
+  background-color: var(--ds-color-brand);
+  color: var(--ds-color-text-on-bright);
+}
+.jam-v2-voto-circular--up-ativo:hover {
+  background-color: var(--ds-color-brand-press);
+}
+.jam-v2-voto-circular--down-ativo {
+  background-color: var(--ds-color-negative);
+  color: var(--ds-color-text-on-bright);
+}
+.jam-v2-voto-circular--down-ativo:hover {
+  background-color: var(--ds-color-negative);
+}

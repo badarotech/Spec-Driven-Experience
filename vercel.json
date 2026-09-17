@@ -3,6 +3,8 @@
   "outputDirectory": "dist",
   "rewrites": [
     { "source": "/desenho", "destination": "/desenho/index.html" },
-    { "source": "/desenho/(.*)", "destination": "/desenho/$1" }
+    { "source": "/desenho/(.*)", "destination": "/desenho/$1" },
+    { "source": "/desenho-v2", "destination": "/desenho-v2/index.html" },
+    { "source": "/desenho-v2/(.*)", "destination": "/desenho-v2/$1" }
   ]
 }
