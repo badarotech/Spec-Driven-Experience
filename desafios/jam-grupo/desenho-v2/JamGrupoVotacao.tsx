@@ -36,7 +36,7 @@ const filaInicial: QueueTrack[] = [
     title: 'We Don’t Talk Anymore (feat. Selena Gomez)',
     artists: 'Charlie Puth, Selena Gomez, DROELOE',
     addedBy: { name: 'Aline', avatarUrl: fotos.aline },
-    votes: 4,
+    votes: 35,
     userVote: null,
   },
   {
@@ -45,7 +45,7 @@ const filaInicial: QueueTrack[] = [
     title: 'LA Girls',
     artists: 'Charlie Puth',
     addedBy: { name: 'Marco', avatarUrl: fotos.marco },
-    votes: 3,
+    votes: 34,
     userVote: null,
   },
   {
@@ -54,7 +54,7 @@ const filaInicial: QueueTrack[] = [
     title: 'Easier - Remix (with Charlie Puth)',
     artists: '5 Seconds of Summer, Charlie Puth',
     addedBy: { name: 'Sumit', avatarUrl: fotos.sumit },
-    votes: 3,
+    votes: 33,
     userVote: null,
   },
   {
@@ -63,8 +63,8 @@ const filaInicial: QueueTrack[] = [
     title: 'Some Type of Love',
     artists: 'Charlie Puth',
     addedBy: { name: 'Você', avatarUrl: fotos.voce, isYou: true },
-    votes: 1,
-    userVote: 'up',
+    votes: 32,
+    userVote: null,
   },
   {
     id: '5',
@@ -72,7 +72,7 @@ const filaInicial: QueueTrack[] = [
     title: 'I Warned Myself',
     artists: 'Charlie Puth',
     addedBy: { name: 'Marco', avatarUrl: fotos.marco },
-    votes: 0,
+    votes: 31,
     userVote: null,
   },
 ];
@@ -212,8 +212,11 @@ export const JamGrupoVotacao: FC = () => {
             disabled
             aria-disabled='true'
           >
-            <AddIcon size={16} />
-            Adicionar
+            <div className='jam-v2-acoes__wrapper'>
+              <AddIcon size={16} />
+              Adicionar
+            </div>
+
           </PillButton>
           <PillButton
             variant='outline'
@@ -274,10 +277,16 @@ export const JamGrupoVotacao: FC = () => {
 
         <ul className='jam-v2-drawer__fila'>
           {fila.map((item) => {
-            const { id, votes = 0, userVote, ...track } = item;
+            const { id, votes = 0, userVote, addedBy: _addedBy, ...track } = item;
             return (
               <li key={id} className='jam-v2-drawer__item' style={{ viewTransitionName: 'ds-queue-item-' + id }}>
-                <TrackMeta {...track} className='jam-v2-drawer__track' />
+                <div className='jam-v2-drawer__track-wrapper'>
+                  <TrackMeta {...track} className='jam-v2-drawer__track' />
+                  {/* Substitui "quem adicionou" (TrackMeta.addedBy) pelo total de votos nesta lista. */}
+                  <span className='jam-v2-drawer__votos-contagem'>
+                    {votes} {votes === 1 ? 'voto' : 'votos'}
+                  </span>
+                </div>
                 <div className='jam-v2-drawer__votos'>
                   <BotaoVotoCircular
                     direcao='down'

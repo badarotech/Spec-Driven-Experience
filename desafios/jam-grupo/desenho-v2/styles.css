@@ -113,6 +113,11 @@
 
 .jam-v2-acoes__adicionar {
   cursor: not-allowed;
+  .jam-v2-acoes__wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
 }
 
 /* Botão secundário cinza escuro (estilo Spotify), sobrepondo o outline padrão do PillButton. */
@@ -200,7 +205,7 @@
 
 .jam-v2-drawer__fila {
   margin: 0;
-  padding: 0 var(--ds-space-1);
+  padding: var(--ds-space-4) var(--ds-space-1) 0;
   list-style: none;
   overflow-y: auto;
   flex: 1;
@@ -218,9 +223,26 @@
   border-bottom: none;
 }
 
+.jam-v2-drawer__track-wrapper {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
 .jam-v2-drawer__track {
   flex: 1;
   min-width: 0;
+}
+
+/* Substitui "quem adicionou" (avatar + nome) pelo total de votos, alinhado sob o texto,
+   fora da capa (mesmo recuo do bloco de texto do TrackMeta: capa 40px + gap 12px). */
+.jam-v2-drawer__votos-contagem {
+  margin-left: calc(var(--ds-size-cover-sm) + var(--ds-space-3));
+  color: var(--ds-color-text-subdued);
+  font-family: var(--ds-font-family-body);
+  font-size: var(--ds-font-size-xs);
 }
 
 .jam-v2-drawer__votos {
