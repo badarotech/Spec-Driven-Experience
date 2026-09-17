@@ -58,7 +58,7 @@
   font-weight: var(--ds-font-weight-bold);
 }
 .jam-votacao__secao-titulo--fila {
-  margin-top: var(--ds-space-8);
+  margin-top: 48px;
 }
 
 .jam-votacao__tocando {
